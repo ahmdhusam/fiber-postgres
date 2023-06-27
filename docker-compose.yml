@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+      # POSTGRES_USER: user
+      # POSTGRES_PASSWORD: pass
+      # POSTGRES_DB: db
+  app:
+    depends_on:
+      - postgres
+    build: .
+    restart: always
+    # environment:
+    #   DATABASE_URL: postgres://user:pass@postgres:5432/db
+    ports:
+      - "5000:5000"
